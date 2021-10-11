@@ -1,7 +1,10 @@
 import { FaSearch } from "react-icons/fa";
 
 import { Wrapper, Input } from "./SearchInput.styles";
-export const SearchInput = (props) => {
+
+interface SearchInputProps {}
+
+export const SearchInput = (props: SearchInputProps) => {
   return (
     <Wrapper>
       <FaSearch />
