@@ -1,6 +1,7 @@
+import { Link, LinkProps } from "react-router-dom";
 import styled from "styled-components";
 
-export interface StyledCardProps {
+export interface StyledCardProps extends LinkProps {
   color?: string;
   shadow?: string;
 }
@@ -26,7 +27,7 @@ export const PokeContainer = styled.div`
   }
 `;
 
-export const CardContainer = styled.div<StyledCardProps>`
+export const CardContainer = styled(Link)<StyledCardProps>`
   align-items: center;
   background-color: ${({ color }) => (color ? color : "inherit")};
   border-radius: 10px;

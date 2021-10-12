@@ -13,7 +13,7 @@ interface CardProps extends StyledCardProps {
 
 export const Card = (props: CardProps) => {
   return (
-    <CardContainer shadow={props.shadow} color={props.color}>
+    <CardContainer shadow={props.shadow} color={props.color} to={props.to}>
       <LeftCornerCircle />
       <PokeContainer>
         <PokeBallSVG />
