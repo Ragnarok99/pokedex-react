@@ -8,7 +8,6 @@ import {
 } from "./Home.styles";
 
 import { HOME_MENU } from "../../constants";
-
 import { SearchInput } from "../../components/SearchInput";
 import { Card } from "../../components/Card";
 
@@ -20,8 +19,10 @@ export const Home = () => {
           <Title>What pokemon are you looking for?</Title>
           <SearchInput />
           <Grid>
-            {HOME_MENU.map((menuProps) => (
-              <Card {...menuProps} />
+            {HOME_MENU.map(({ text, ...menuProps }) => (
+              <Card key={text} {...menuProps}>
+                {text}
+              </Card>
             ))}
           </Grid>
         </SearchSection>
