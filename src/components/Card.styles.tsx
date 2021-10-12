@@ -1,7 +1,7 @@
 import { Link, LinkProps } from "react-router-dom";
 import styled from "styled-components";
 
-export interface StyledCardProps extends LinkProps {
+export interface CardProps extends LinkProps {
   color?: string;
   shadow?: string;
 }
@@ -27,19 +27,21 @@ export const PokeContainer = styled.div`
   }
 `;
 
-export const CardContainer = styled(Link)<StyledCardProps>`
+export const CardContainer = styled(Link)<CardProps>`
   align-items: center;
   background-color: ${({ color }) => (color ? color : "inherit")};
   border-radius: 10px;
   color: white;
+  cursor: pointer;
   display: flex;
   font-size: 16px;
   font-weight: bold;
   padding: 20px;
 
   min-height: 80px;
-  position: relative;
   overflow: hidden;
+  position: relative;
+  text-decoration: none;
 
   ${LeftCornerCircle} {
     background-color: ${({ shadow }) => shadow};
@@ -52,4 +54,8 @@ export const CardContainer = styled(Link)<StyledCardProps>`
       }
     }
   }
+`;
+
+export const CardContent = styled.div`
+  position: relative;
 `;

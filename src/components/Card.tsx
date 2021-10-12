@@ -2,14 +2,11 @@ import { ReactComponent as PokeBallSVG } from "../assets/svg/pokeball.svg";
 
 import {
   CardContainer,
-  StyledCardProps,
+  CardContent,
+  CardProps,
   LeftCornerCircle,
   PokeContainer,
 } from "./Card.styles";
-
-interface CardProps extends StyledCardProps {
-  text: string;
-}
 
 export const Card = (props: CardProps) => {
   return (
@@ -18,7 +15,7 @@ export const Card = (props: CardProps) => {
       <PokeContainer>
         <PokeBallSVG />
       </PokeContainer>
-      <span>{props.text}</span>
+      <CardContent>{props.children}</CardContent>
     </CardContainer>
   );
 };
