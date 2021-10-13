@@ -1,6 +1,7 @@
+import { useHistory } from "react-router";
 import { FaArrowLeft } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useHistory } from "react-router";
+import Skeleton from "react-loading-skeleton";
 
 import { Card } from "../../components/Card";
 import { usePokemons } from "../../hooks/usePokemons";
@@ -15,7 +16,7 @@ import {
 } from "./Pokedex.styles";
 
 export const Pokedex = () => {
-  const { pokemons } = usePokemons();
+  const { pokemons, loading } = usePokemons();
   const history = useHistory();
 
   const goBack = () => {
@@ -30,22 +31,28 @@ export const Pokedex = () => {
           <GiHamburgerMenu />
         </Header>
         <Title>Pokedex</Title>
-        <PokemonsContainer>
-          {pokemons.map((pokemon: any) => (
-            <Card
-              key={pokemon.name}
-              shadow={`rgb(${pokemon.colors[1]})`}
-              color={`rgb(${pokemon.colors[2]})`}
-              to="hola"
-            >
-              <PokeWrapper>
-                <div>
+        <PokemonsContainer loading={loading}>
+          {loading ? (
+            <Skeleton count={10} style={{ height: 80 }} />
+          ) : (
+            pokemons.map((pokemon: any) => (
+              <Card
+                key={pokemon.name}
+                shadow={`rgb(${pokemon.colors[1]})`}
+                color={`rgb(${pokemon.colors[2]})`}
+                to="hola"
+              >
+                <PokeWrapper>
                   <span>{pokemon.name}</span>
-                </div>
-                <Image alt={pokemon.name} src={pokemon.imageURL} />
-              </PokeWrapper>
-            </Card>
-          ))}
+                  <Image
+                    loading="lazy"
+                    alt={pokemon.name}
+                    src={pokemon.imageURL}
+                  />
+                </PokeWrapper>
+              </Card>
+            ))
+          )}
         </PokemonsContainer>
       </Content>
     </Container>

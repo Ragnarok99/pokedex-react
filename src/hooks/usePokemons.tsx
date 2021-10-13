@@ -6,6 +6,8 @@ import { pokeApi } from "../api";
 
 export const usePokemons = () => {
   const [pokemons, setPokemons] = React.useState<any>([]);
+  const [loading, setLoading] = React.useState<boolean>(true);
+
   React.useEffect(() => {
     pokeApi
       .get<GetPokemons>("/pokemon/?offset=0&limit=10")
@@ -32,8 +34,12 @@ export const usePokemons = () => {
             colors: pokeColors[index],
           }))
         );
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
       });
   }, []);
 
-  return { pokemons };
+  return { pokemons, loading };
 };
