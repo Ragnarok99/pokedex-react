@@ -61,7 +61,7 @@ export const Pokedex = () => {
               key={pokemon.name}
               shadow={`rgb(${pokemon.colors[1]})`}
               color={`rgb(${pokemon.colors[2]})`}
-              to="hola"
+              to={`/pokemon/${pokemon.name}`}
             >
               <PokeWrapper
                 ref={

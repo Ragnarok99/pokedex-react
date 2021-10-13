@@ -1,7 +1,7 @@
 import React from "react";
 import { prominent } from "color.js";
 
-import { GetPokemons } from "../types/pokemonRequest";
+import { GetPokemons } from "../types/pokemonsRequest";
 import { pokeApi } from "../api";
 
 export const usePokemons = (page: number = 0) => {
@@ -18,6 +18,7 @@ export const usePokemons = (page: number = 0) => {
             pokemon.url.split("/")[pokemon.url.split("/").length - 2]
           }.png`,
         }));
+
         const dominantColorsPromises = pokemonsFormatted.map(({ imageURL }) =>
           prominent(imageURL)
         );
