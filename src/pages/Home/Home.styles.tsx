@@ -23,8 +23,12 @@ export const Content = styled.div`
 `;
 
 export const Title = styled.h1`
-  padding-top: 200px;
+  padding-top: 0;
   font-size: 30px;
+
+  @media (min-width: 500px) {
+    padding-top: 200px;
+  }
 `;
 
 export const SearchSection = styled.section`
