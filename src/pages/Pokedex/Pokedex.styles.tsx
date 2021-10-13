@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface PokemonContainerProps {
-  loading: boolean;
+  $loading: boolean;
 }
 
 export const Container = styled.div`
@@ -21,7 +21,7 @@ export const Content = styled.div`
   display: grid;
   grid-gap: 40px;
   padding: 24px;
-  padding-top: 48px;
+  width: 100%;
 
   @media (min-width: 600px) {
     width: 500px;
@@ -45,9 +45,9 @@ export const Title = styled.h1`
 
 export const PokemonsContainer = styled.div<PokemonContainerProps>`
   display: grid;
-  grid-template-columns: ${({ loading }) => (loading ? "1fr" : "1fr 1fr")};
-  ${({ loading }) =>
-    loading &&
+  grid-template-columns: ${({ $loading }) => ($loading ? "1fr" : "1fr 1fr")};
+  ${({ $loading }) =>
+    $loading &&
     css`
       > span {
         display: grid;
@@ -68,7 +68,17 @@ export const Image = styled.img`
 `;
 export const PokeWrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   text-transform: capitalize;
+`;
+
+export const PokemonName = styled.div`
+  text-align: left;
+  display: none;
+
+  @media (min-width: 500px) {
+    display: block;
+    min-width: 90px;
+  }
 `;

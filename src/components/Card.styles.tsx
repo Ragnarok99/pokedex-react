@@ -38,7 +38,7 @@ export const CardContainer = styled(Link)<CardProps>`
   font-weight: bold;
   padding: 20px;
 
-  min-height: 80px;
+  min-height: 100px;
   overflow: hidden;
   position: relative;
   text-decoration: none;
@@ -58,4 +58,5 @@ export const CardContainer = styled(Link)<CardProps>`
 
 export const CardContent = styled.div`
   position: relative;
+  width: 100%;
 `;
