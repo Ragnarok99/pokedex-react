@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+interface PokemonContainerProps {
+  loading: boolean;
+}
 
 export const Container = styled.div`
   align-items: center;
@@ -39,10 +43,21 @@ export const Title = styled.h1`
   text-align: left;
 `;
 
-export const PokemonsContainer = styled.div`
+export const PokemonsContainer = styled.div<PokemonContainerProps>`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: ${({ loading }) => (loading ? "1fr" : "1fr 1fr")};
+  ${({ loading }) =>
+    loading &&
+    css`
+      > span {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+      }
+    `};
+
   grid-gap: 20px;
+
   overflow: hidden;
   max-height: 500px;
   overflow-y: auto;
