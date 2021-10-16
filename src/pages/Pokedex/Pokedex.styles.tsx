@@ -1,8 +1,4 @@
-import styled, { css } from "styled-components";
-
-interface PokemonContainerProps {
-  $loading: boolean;
-}
+import styled from "styled-components";
 
 export const Container = styled.div`
   align-items: center;
@@ -20,7 +16,8 @@ export const Content = styled.div`
   border-radius: 12px;
   display: grid;
   grid-gap: 40px;
-  padding: 24px;
+  height: 100vh;
+  padding: 32px;
   width: 100%;
 
   @media (min-width: 600px) {
@@ -31,8 +28,16 @@ export const Content = styled.div`
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  margin: 56px 0;
 
-  svg {
+  .go-back {
+    transform: scale(3);
+  }
+  .menu {
+    transform: scale(2);
+  }
+
+  > svg {
     font-size: 20px;
     cursor: pointer;
   }
@@ -43,23 +48,14 @@ export const Title = styled.h1`
   text-align: left;
 `;
 
-export const PokemonsContainer = styled.div<PokemonContainerProps>`
+export const PokemonsContainer = styled.div`
   display: grid;
-  grid-template-columns: ${({ $loading }) => ($loading ? "1fr" : "1fr 1fr")};
-  ${({ $loading }) =>
-    $loading &&
-    css`
-      > span {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
-      }
-    `};
+  grid-template-columns: 1fr 1fr;
 
   grid-gap: 20px;
+  height: 65vh;
 
   overflow: hidden;
-  max-height: 500px;
   overflow-y: auto;
 `;
 
@@ -80,5 +76,15 @@ export const PokemonName = styled.div`
   @media (min-width: 500px) {
     display: block;
     min-width: 90px;
+  }
+`;
+
+export const SkeletonContainer = styled.div`
+  grid-column: span 2;
+
+  > span {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
   }
 `;

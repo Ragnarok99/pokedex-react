@@ -15,6 +15,7 @@ export const Content = styled.div`
   border-radius: 8px;
   display: grid;
   grid-gap: 20px;
+  height: 100vh;
   width: 100%;
 
   @media (min-width: 600px) {
@@ -39,7 +40,7 @@ export const SearchSection = styled.section`
   display: grid;
   grid-gap: 40px;
   margin-bottom: -20px;
-  padding: 16px;
+  padding: 32px;
   position: relative;
   padding-bottom: 20px;
 `;
@@ -50,7 +51,7 @@ export const NewsSection = styled.section`
   border-bottom-right-radius: 12px;
   height: 100%;
   min-height: 300px;
-  padding: 16px;
+  padding: 32px;
   padding-top: 40px;
 `;
 

@@ -9,6 +9,7 @@ export const usePokemons = (page: number = 0) => {
   const [loading, setLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
+    setLoading(true);
     pokeApi
       .get<GetPokemons>(`/pokemon/?offset=${String(page * 10 + 1)}&limit=10`)
       .then(async ({ data }) => {
