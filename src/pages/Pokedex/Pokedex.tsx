@@ -1,8 +1,7 @@
 import React from "react";
 import LazyLoad, { forceCheck, forceVisible } from "react-lazyload";
 import { useHistory } from "react-router";
-import { FaArrowLeft } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { IoIosArrowRoundBack, IoIosMenu } from "react-icons/io";
 import Skeleton from "react-loading-skeleton";
 
 import { Card } from "../../components/Card";
@@ -15,6 +14,7 @@ import {
   PokemonName,
   PokemonsContainer,
   PokeWrapper,
+  SkeletonContainer,
   Title,
 } from "./Pokedex.styles";
 
@@ -50,18 +50,20 @@ export const Pokedex = () => {
   return (
     <Container>
       <Content>
-        <Header>
-          <FaArrowLeft onClick={goBack} />
-          <GiHamburgerMenu />
-        </Header>
-        <Title>Pokedex</Title>
-        <PokemonsContainer $loading={loading}>
+        <div>
+          <Header>
+            <IoIosArrowRoundBack className="go-back" onClick={goBack} />
+            <IoIosMenu className="menu" />
+          </Header>
+          <Title>Pokedex</Title>
+        </div>
+        <PokemonsContainer>
           {pokemons.map((pokemon: any, currentPokemonIndex: number) => (
             <Card
               key={pokemon.name}
               shadow={`rgb(${pokemon.colors[1]})`}
               color={`rgb(${pokemon.colors[2]})`}
-              to="hola"
+              to={`/pokemon/${pokemon.name}`}
             >
               <PokeWrapper
                 ref={
@@ -81,7 +83,9 @@ export const Pokedex = () => {
               </PokeWrapper>
             </Card>
           ))}
-          {loading && <Skeleton count={10} style={{ height: 100 }} />}
+          <SkeletonContainer>
+            {loading && <Skeleton count={10} style={{ height: 100 }} />}
+          </SkeletonContainer>
         </PokemonsContainer>
       </Content>
     </Container>

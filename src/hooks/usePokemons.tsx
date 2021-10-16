@@ -1,7 +1,7 @@
 import React from "react";
 import { prominent } from "color.js";
 
-import { GetPokemons } from "../types/pokemonRequest";
+import { GetPokemons } from "../types/pokemonsRequest";
 import { pokeApi } from "../api";
 
 export const usePokemons = (page: number = 0) => {
@@ -9,6 +9,7 @@ export const usePokemons = (page: number = 0) => {
   const [loading, setLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
+    setLoading(true);
     pokeApi
       .get<GetPokemons>(`/pokemon/?offset=${String(page * 10 + 1)}&limit=10`)
       .then(async ({ data }) => {
@@ -18,6 +19,7 @@ export const usePokemons = (page: number = 0) => {
             pokemon.url.split("/")[pokemon.url.split("/").length - 2]
           }.png`,
         }));
+
         const dominantColorsPromises = pokemonsFormatted.map(({ imageURL }) =>
           prominent(imageURL)
         );
