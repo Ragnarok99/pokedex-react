@@ -4,11 +4,16 @@ import Skeleton from "react-loading-skeleton";
 import { useParams, useHistory } from "react-router-dom";
 
 import { ReactComponent as PokeballSVG } from "../../assets/svg/pokeball.svg";
+import { Tabs } from "../../components/Tabs";
 import { usePokemon } from "../../hooks/usePokemon";
+import { usePokemonChain } from "../../hooks/usePokemonChain";
 import {
+  AboutContainer,
+  Box,
   Chip,
   Container,
   Content,
+  Direction,
   Header,
   Grid,
   Image,
@@ -17,6 +22,7 @@ import {
   PokemonName,
   PokemonNumber,
   SkeletonWrapper,
+  Paragraph,
 } from "./Pokemon.styles";
 
 export const Pokemon = () => {
@@ -25,11 +31,14 @@ export const Pokemon = () => {
   const history = useHistory();
 
   const { pokemon, loading } = usePokemon(name);
+  const t = usePokemonChain(pokemon?.id);
+
+  const { flavor_text: aboutText } =
+    pokemon?.specie?.flavor_text_entries[6] || {};
 
   const goBack = React.useCallback(() => {
     void history.push("/pokedex");
   }, [history]);
-
   return (
     <Container>
       <Content>
@@ -65,7 +74,7 @@ export const Pokemon = () => {
                     ))}
                   </Grid>
                   <Grid>
-                    <span>{pokemon?.name}</span>
+                    <span>{pokemon?.specie?.genera[7].genus}</span>
                   </Grid>
                 </Grid>
               </Header>
@@ -79,7 +88,38 @@ export const Pokemon = () => {
                 src={pokemon?.main_image}
                 alt={pokemon?.name}
               />
-              Pokemon news
+              <Tabs initial="About">
+                <Tabs.Tab label="About">
+                  <AboutContainer>
+                    <Paragraph>{aboutText}</Paragraph>
+                    <Box>
+                      <Grid direction={Direction.horizontal}>
+                        <span className="box-title">Height</span>
+                        <span>
+                          {pokemon?.height}dm{" "}
+                          {`(${Number(pokemon?.height) * 10} cm)`}
+                        </span>
+                      </Grid>
+                      <Grid direction={Direction.horizontal}>
+                        <span className="box-title">Weight</span>
+                        <span>
+                          {pokemon?.weight}hg{" "}
+                          {`(${Number(pokemon?.weight) / 10} kg)`}
+                        </span>
+                      </Grid>
+                    </Box>
+                  </AboutContainer>
+                </Tabs.Tab>
+                {/* <Tabs.Tab label="Base Stats">
+                  dsazsaSZa commodi ipsam ab atque.
+                </Tabs.Tab> */}
+                {/* <Tabs.Tab label="Evolution">
+                  dsazsaSZa commodi ipsam ab atque.
+                </Tabs.Tab> */}
+                <Tabs.Tab label="Moves">
+                  dsazsaSZa commodi ipsam ab atque.
+                </Tabs.Tab>
+              </Tabs>
             </InfoSection>
           </>
         )}

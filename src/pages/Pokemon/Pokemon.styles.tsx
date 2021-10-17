@@ -1,12 +1,21 @@
 import styled from "styled-components";
 
+export enum Direction {
+  horizontal = "horizontal",
+  vertical = "vertical",
+}
 interface Colorable {
   $color?: string;
   $shadow?: string;
 }
 
+interface GridProps {
+  direction?: Direction;
+}
+
 export const Container = styled.div`
   align-items: center;
+  color: #626262;
   background-color: #f6f7fc;
   display: flex;
   flex-direction: column;
@@ -27,7 +36,7 @@ export const Content = styled.div`
 
 export const PokemonName = styled.h1`
   padding-top: 0;
-  font-size: 30px;
+  font-size: 40px;
   text-transform: capitalize;
 `;
 
@@ -42,6 +51,7 @@ export const ImageSection = styled.section<Colorable>`
   flex-direction: column;
   justify-content: space-between;
   height: 52vh;
+  min-height: 500px;
   padding: 50px 32px;
   padding-bottom: 80px;
   z-index: 1;
@@ -56,32 +66,23 @@ export const ImageSection = styled.section<Colorable>`
 `;
 
 export const InfoSection = styled.section`
+  align-items: center;
   background-color: white;
-
   border-radius: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-
   height: 51vh;
-  min-height: 300px;
+  min-height: 400px;
   margin-top: -50px;
-  padding: 16px;
+  padding: 16px 32px;
   padding-top: 40px;
   position: relative;
 `;
 
 export const Image = styled.img`
-  margin-top: -100%;
+  margin-top: -280px;
   width: 300px;
   z-index: 2;
-  @media (min-width: 356px) {
-    margin-top: -80%;
-  }
-
-  @media (min-width: 375px) {
-    margin-top: -50%;
-  }
 `;
 
 export const Header = styled.div`
@@ -106,8 +107,10 @@ export const Header = styled.div`
   }
 `;
 
-export const Grid = styled.div`
+export const Grid = styled.div<GridProps>`
   display: flex;
+  flex-direction: ${({ direction }) =>
+    direction === Direction.horizontal ? "column" : "row"};
   justify-content: space-between;
 `;
 
@@ -133,5 +136,35 @@ export const SkeletonWrapper = styled.div`
   span {
     border-radius: 30px;
     height: 100vh;
+  }
+`;
+
+export const AboutContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 24px;
+`;
+
+export const Paragraph = styled.p`
+  line-height: 1.5;
+  text-align: left;
+  text-transform: lowercase;
+
+  :first-letter {
+    text-transform: capitalize;
+  }
+`;
+
+export const Box = styled.div`
+  border: 1px solid lightgray;
+  box-shadow: 2px 4px 15px 2px rgba(0 0 0/ 10%);
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-around;
+  padding: 24px 0;
+
+  .box-title {
+    color: #c2c0c5;
+    padding-bottom: 8px;
   }
 `;
