@@ -11,7 +11,7 @@ export const usePokemons = (page: number = 0) => {
   React.useEffect(() => {
     setLoading(true);
     pokeApi
-      .get<GetPokemons>(`/pokemon/?offset=${String(page * 10 + 1)}&limit=10`)
+      .get<GetPokemons>(`/pokemon/?offset=${String(page * 10)}&limit=10`)
       .then(async ({ data }) => {
         const pokemonsFormatted = data.results.map((pokemon) => ({
           ...pokemon,

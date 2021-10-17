@@ -19,7 +19,14 @@ export const usePokemon = (name: string) => {
         const response: any = await prominent(formattedPokemon.main_image);
         const colors = response.map((color: number[]) => color.join(","));
 
-        setPokemon({ ...formattedPokemon, colors });
+        const detailPromises = [
+          // pokeApi.get(`/characteristic/${data.id}`),
+          pokeApi.get(`/pokemon-species/${data.id}`),
+        ];
+
+        const [{ data: specie }] = await Promise.all(detailPromises);
+
+        setPokemon({ ...formattedPokemon, colors, specie });
         setLoading(false);
       })
       .catch((error) => {
