@@ -6,7 +6,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { ReactComponent as PokeballSVG } from "../../assets/svg/pokeball.svg";
 import { Tabs } from "../../components/Tabs";
 import { usePokemon } from "../../hooks/usePokemon";
-import { usePokemonChain } from "../../hooks/usePokemonChain";
+// import { usePokemonChain } from "../../hooks/usePokemonChain";
 import {
   AboutContainer,
   Box,
