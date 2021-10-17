@@ -4,7 +4,7 @@ import { pokeApi } from "../api";
 import { PokemonChain } from "../types/pokemonChain";
 
 export const usePokemonChain = (id?: number) => {
-  const [pokemon, setPokemon] = React.useState<PokemonChain>();
+  const [pokemon] = React.useState<PokemonChain>();
   const [loading, setLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {

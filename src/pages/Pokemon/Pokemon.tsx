@@ -31,7 +31,7 @@ export const Pokemon = () => {
   const history = useHistory();
 
   const { pokemon, loading } = usePokemon(name);
-  const t = usePokemonChain(pokemon?.id);
+  // const t = usePokemonChain(pokemon?.id);
 
   const { flavor_text: aboutText } =
     pokemon?.specie?.flavor_text_entries[6] || {};
