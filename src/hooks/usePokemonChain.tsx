@@ -1,7 +1,7 @@
 import React from "react";
 
 import { pokeApi } from "../api";
-import { PokemonChainRequest } from "../types/pokemonChainRequest";
+import { Chain, PokemonChainRequest } from "../types/pokemonChainRequest";
 
 export interface PokemonChain {
   imageURL: string;
@@ -11,7 +11,7 @@ export interface PokemonChain {
 }
 
 export const usePokemonChain = (url?: string) => {
-  const [pokemon, setPokemon] = React.useState<PokemonChain[]>();
+  const [chain, setChain] = React.useState<PokemonChain[]>();
   const [loading, setLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
@@ -27,7 +27,7 @@ export const usePokemonChain = (url?: string) => {
               species: { name, url },
             },
           } = data;
-          const formattedPokemon = [
+          const pokemonChainArray = [
             {
               name,
               imageURL: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
@@ -37,9 +37,9 @@ export const usePokemonChain = (url?: string) => {
             },
           ];
 
-          getEvolutionChain(evolves_to, formattedPokemon);
+          getEvolutionChain(evolves_to, pokemonChainArray);
 
-          setPokemon(formattedPokemon);
+          setChain(pokemonChainArray);
           setLoading(false);
         })
         .catch((error) => {
@@ -49,17 +49,20 @@ export const usePokemonChain = (url?: string) => {
     }
   }, [url]);
 
-  return { pokemonChain: pokemon, loading };
+  return { pokemonChain: chain, loading };
 };
 
-function getEvolutionChain(evolvesTo: any[], array: any[]) {
+function getEvolutionChain(
+  nextChain: Chain[],
+  pokemonChainArray: PokemonChain[]
+) {
   const [
     {
       species: { name, url },
       evolution_details,
       evolves_to,
     },
-  ] = evolvesTo;
+  ] = nextChain;
 
   const nextPokemonInfo = {
     name,
@@ -69,16 +72,15 @@ function getEvolutionChain(evolvesTo: any[], array: any[]) {
     minLevel: evolution_details[0].min_level,
   };
 
-  console.log({ nextPokemonInfo, evolution_details });
-
-  if (!array[array.length - 1].nextPokemon) {
-    array[array.length - 1].nextPokemon = nextPokemonInfo;
+  if (!pokemonChainArray[pokemonChainArray.length - 1].nextPokemon) {
+    pokemonChainArray[pokemonChainArray.length - 1].nextPokemon =
+      nextPokemonInfo;
     if (evolves_to.length > 0) {
-      array.push(nextPokemonInfo);
+      pokemonChainArray.push(nextPokemonInfo);
     }
   }
 
-  if (evolves_to.length > 0) getEvolutionChain(evolves_to, array);
+  if (evolves_to.length > 0) getEvolutionChain(evolves_to, pokemonChainArray);
   else {
     return;
   }
