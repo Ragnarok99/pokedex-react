@@ -72,7 +72,7 @@ export const InfoSection = styled.section`
   display: flex;
   flex-direction: column;
   height: 51vh;
-  min-height: 400px;
+  min-height: 500px;
   margin-top: -50px;
   padding: 16px 32px;
   padding-top: 40px;
@@ -167,4 +167,12 @@ export const Box = styled.div`
     color: #c2c0c5;
     padding-bottom: 8px;
   }
+`;
+
+export const EvolutionTitle = styled.span`
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 32px;
+  text-align: left;
+  width: 100%;
 `;

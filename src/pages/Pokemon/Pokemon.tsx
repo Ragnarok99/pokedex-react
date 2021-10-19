@@ -5,8 +5,9 @@ import { useParams, useHistory } from "react-router-dom";
 
 import { ReactComponent as PokeballSVG } from "../../assets/svg/pokeball.svg";
 import { Tabs } from "../../components/Tabs";
+import { Chain } from "./components/Chain";
 import { usePokemon } from "../../hooks/usePokemon";
-// import { usePokemonChain } from "../../hooks/usePokemonChain";
+import { usePokemonChain } from "../../hooks/usePokemonChain";
 import {
   AboutContainer,
   Box,
@@ -23,6 +24,7 @@ import {
   PokemonNumber,
   SkeletonWrapper,
   Paragraph,
+  EvolutionTitle,
 } from "./Pokemon.styles";
 
 export const Pokemon = () => {
@@ -31,7 +33,9 @@ export const Pokemon = () => {
   const history = useHistory();
 
   const { pokemon, loading } = usePokemon(name);
-  // const t = usePokemonChain(pokemon?.id);
+  const { pokemonChain } = usePokemonChain(
+    pokemon?.specie?.evolution_chain.url
+  );
 
   const { flavor_text: aboutText } =
     pokemon?.specie?.flavor_text_entries[6] || {};
@@ -110,14 +114,12 @@ export const Pokemon = () => {
                     </Box>
                   </AboutContainer>
                 </Tabs.Tab>
-                {/* <Tabs.Tab label="Base Stats">
-                  dsazsaSZa commodi ipsam ab atque.
-                </Tabs.Tab> */}
-                {/* <Tabs.Tab label="Evolution">
-                  dsazsaSZa commodi ipsam ab atque.
-                </Tabs.Tab> */}
-                <Tabs.Tab label="Moves">
-                  dsazsaSZa commodi ipsam ab atque.
+
+                <Tabs.Tab label="Evolution">
+                  <EvolutionTitle>Evolution chain</EvolutionTitle>
+                  {pokemonChain?.map((chain) => (
+                    <Chain {...chain} />
+                  ))}
                 </Tabs.Tab>
               </Tabs>
             </InfoSection>
