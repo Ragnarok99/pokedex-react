@@ -132,13 +132,6 @@ export const PokemonNumber = styled.span`
   font-size: 18px;
 `;
 
-export const SkeletonWrapper = styled.div`
-  span {
-    border-radius: 30px;
-    height: 100vh;
-  }
-`;
-
 export const AboutContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;

@@ -1,11 +1,11 @@
 import React from "react";
 import { IoIosArrowRoundBack, IoIosHeartEmpty } from "react-icons/io";
-import Skeleton from "react-loading-skeleton";
 import { useParams, useHistory } from "react-router-dom";
 
 import { ReactComponent as PokeballSVG } from "../../assets/svg/pokeball.svg";
 import { Tabs } from "../../components/Tabs";
 import { Chain } from "./components/Chain";
+import { PokemonSkeleton } from "./components/PokemonSkeleton";
 import { usePokemon } from "../../hooks/usePokemon";
 import { usePokemonChain } from "../../hooks/usePokemonChain";
 import {
@@ -22,7 +22,6 @@ import {
   InfoSection,
   PokemonName,
   PokemonNumber,
-  SkeletonWrapper,
   Paragraph,
   EvolutionTitle,
 } from "./Pokemon.styles";
@@ -47,7 +46,7 @@ export const Pokemon = () => {
     <Container>
       <Content>
         {loading && !imageLoaded ? (
-          <Skeleton wrapper={SkeletonWrapper} />
+          <PokemonSkeleton />
         ) : (
           <>
             <ImageSection
