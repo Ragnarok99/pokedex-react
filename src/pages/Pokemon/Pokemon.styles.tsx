@@ -45,7 +45,7 @@ export const ImageSection = styled.section<Colorable>`
 
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  color: white;
+  color: ${({ $color }) => ($color === "255,255,255" ? "#616161" : "white")};
 
   display: flex;
   flex-direction: column;
@@ -150,7 +150,8 @@ export const Paragraph = styled.p`
 
 export const Box = styled.div`
   border: 1px solid lightgray;
-  box-shadow: 2px 4px 15px 2px rgba(0 0 0/ 10%);
+  box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px,
+    rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
   border-radius: 8px;
   display: flex;
   justify-content: space-around;

@@ -117,7 +117,7 @@ export const Pokemon = () => {
                 <Tabs.Tab label="Evolution">
                   <EvolutionTitle>Evolution chain</EvolutionTitle>
                   {pokemonChain?.map((chain) => (
-                    <Chain {...chain} />
+                    <Chain key={chain.name} {...chain} />
                   ))}
                 </Tabs.Tab>
               </Tabs>

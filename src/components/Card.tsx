@@ -10,7 +10,12 @@ import {
 
 export const Card = (props: CardProps) => {
   return (
-    <CardContainer shadow={props.shadow} color={props.color} to={props.to}>
+    <CardContainer
+      shadow={props.shadow}
+      bgColor={props.bgColor}
+      color={props.color}
+      to={props.to}
+    >
       <LeftCornerCircle />
       <PokeContainer>
         <PokeBallSVG />
