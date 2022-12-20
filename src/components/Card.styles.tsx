@@ -71,7 +71,6 @@ const transformColor = (color: string) => {
     .replace("rgb", "")
     .split(",");
 
-  console.log(parts);
   const colorLightParts = parts.filter((part) => +part >= 180);
   if (colorLightParts.length > 1) {
     const shadowLighterParts = parts.filter((part) => +part >= 180);

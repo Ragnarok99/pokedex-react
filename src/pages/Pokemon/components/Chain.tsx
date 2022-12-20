@@ -1,5 +1,6 @@
 import React from "react";
 import { FaLongArrowAltRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { PokemonChain } from "../../../hooks/usePokemonChain";
 
 import { Container, Level } from "./Chain.styles";
@@ -11,20 +12,20 @@ export const Chain: React.FC<PokemonChain> = ({
 }) => {
   return (
     <Container>
-      <div>
+      <Link to={{ pathname: `/pokemon/${name}` }} replace>
         <img src={imageURL} alt={name} />
         <span>{name}</span>
-      </div>
+      </Link>
       <div>
         <FaLongArrowAltRight />
         <Level>
           {nextPokemon.minLevel ? `Lvl ${nextPokemon.minLevel}` : "Needs item"}
         </Level>
       </div>
-      <div>
+      <Link to={{ pathname: `/pokemon/${nextPokemon.name}` }} replace>
         <img src={nextPokemon.imageURL} alt={nextPokemon.name} />
         <span>{nextPokemon.name}</span>
-      </div>
+      </Link>
     </Container>
   );
 };

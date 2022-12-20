@@ -18,6 +18,17 @@ export const Container = styled.section`
     padding-top: 20px;
   }
 
+  a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+
+    &,
+    &:visited {
+      color: #000;
+    }
+  }
+
   div {
     display: flex;
     flex-direction: column;
